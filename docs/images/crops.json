@@ -1,0 +1,70 @@
+[
+  {
+    "image": "comparison-01.png",
+    "source_size_px": [
+      780,
+      594
+    ],
+    "crop_box_left_top_right_bottom_px": [
+      0,
+      7,
+      780,
+      587
+    ],
+    "output_size_px": [
+      780,
+      580
+    ]
+  },
+  {
+    "image": "comparison-02.png",
+    "source_size_px": [
+      781,
+      581
+    ],
+    "crop_box_left_top_right_bottom_px": [
+      0,
+      0,
+      780,
+      580
+    ],
+    "output_size_px": [
+      780,
+      580
+    ]
+  },
+  {
+    "image": "comparison-03.png",
+    "source_size_px": [
+      782,
+      604
+    ],
+    "crop_box_left_top_right_bottom_px": [
+      1,
+      12,
+      781,
+      592
+    ],
+    "output_size_px": [
+      780,
+      580
+    ]
+  },
+  {
+    "image": "comparison-04.png",
+    "source_size_px": [
+      781,
+      613
+    ],
+    "crop_box_left_top_right_bottom_px": [
+      0,
+      16,
+      780,
+      596
+    ],
+    "output_size_px": [
+      780,
+      580
+    ]
+  }
+]

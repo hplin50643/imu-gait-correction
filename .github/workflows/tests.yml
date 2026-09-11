@@ -1,0 +1,24 @@
+name: Tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  synthetic-tests:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.10'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest discover -v
+      - run: python validate_bvh.py examples/before_v1_x100.bvh
+      - run: python validate_bvh.py examples/after_v3.bvh

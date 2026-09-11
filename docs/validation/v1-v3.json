@@ -1,0 +1,76 @@
+{
+  "meaning": "Tilt is global bone +Y vs vertical, not error relative to measured ground truth.",
+  "files": {
+    "before": "before_v1_x100.bvh",
+    "after": "after_v3.bvh"
+  },
+  "labels": {
+    "before": "v1 before correction",
+    "after": "v3 corrected"
+  },
+  "frames": 5259,
+  "frame_time_s": 0.016666666667,
+  "duration_first_to_last_s": 87.63333333508601,
+  "metrics": {
+    "before": {
+      "Hips": {
+        "first_10s_median_tilt_deg": 2.6537840901110066,
+        "last_10s_median_tilt_deg": 104.94390525932846
+      },
+      "LeftUpLeg": {
+        "first_10s_median_tilt_deg": 19.72842886033752,
+        "last_10s_median_tilt_deg": 19.550450438276435
+      },
+      "RightUpLeg": {
+        "first_10s_median_tilt_deg": 19.46526857603709,
+        "last_10s_median_tilt_deg": 17.613207919368868
+      },
+      "LeftLeg": {
+        "first_10s_median_tilt_deg": 14.989167364445658,
+        "last_10s_median_tilt_deg": 16.45980573995177
+      },
+      "RightLeg": {
+        "first_10s_median_tilt_deg": 105.42564240369359,
+        "last_10s_median_tilt_deg": 143.49346406788257
+      },
+      "LeftFoot": {
+        "first_10s_median_tilt_deg": 58.473102007373186,
+        "last_10s_median_tilt_deg": 87.05900855337079
+      },
+      "RightFoot": {
+        "first_10s_median_tilt_deg": 47.34048423832789,
+        "last_10s_median_tilt_deg": 91.91437298637004
+      }
+    },
+    "after": {
+      "Hips": {
+        "first_10s_median_tilt_deg": 2.6537840901110066,
+        "last_10s_median_tilt_deg": 2.6483452365476294
+      },
+      "LeftUpLeg": {
+        "first_10s_median_tilt_deg": 19.77561516183998,
+        "last_10s_median_tilt_deg": 19.25069249374986
+      },
+      "RightUpLeg": {
+        "first_10s_median_tilt_deg": 18.423346363952636,
+        "last_10s_median_tilt_deg": 17.13702368557344
+      },
+      "LeftLeg": {
+        "first_10s_median_tilt_deg": 15.231931679892579,
+        "last_10s_median_tilt_deg": 16.419271611299433
+      },
+      "RightLeg": {
+        "first_10s_median_tilt_deg": 15.4344207662554,
+        "last_10s_median_tilt_deg": 17.914691956705017
+      },
+      "LeftFoot": {
+        "first_10s_median_tilt_deg": 9.712458481322553,
+        "last_10s_median_tilt_deg": 17.82297194589647
+      },
+      "RightFoot": {
+        "first_10s_median_tilt_deg": 12.576881609856752,
+        "last_10s_median_tilt_deg": 15.423350174438056
+      }
+    }
+  }
+}

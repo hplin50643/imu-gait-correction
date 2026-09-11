@@ -1,0 +1,19 @@
+{
+  "description": "BVH uses +Y up, +Z forward, +X character left. Outer-arm mounting correction: left upper arm/forearm +90 degrees, right upper arm/forearm -90 degrees around +Y. Other forward-axis settings remain initial assumptions.",
+  "sensors": {
+    "pelvis": {"forward_axis": "+z", "heading_deg": 0},
+    "upper_back": {"forward_axis": "+z", "heading_deg": 0},
+    "chest": {"forward_axis": "+z", "heading_deg": 0},
+    "head": {"forward_axis": "+z", "heading_deg": 0},
+    "left_upper_arm": {"forward_axis": "+z", "heading_deg": 90},
+    "left_forearm": {"forward_axis": "+z", "heading_deg": 90},
+    "right_upper_arm": {"forward_axis": "+z", "heading_deg": -90},
+    "right_forearm": {"forward_axis": "+z", "heading_deg": -90},
+    "left_thigh": {"forward_axis": "+z", "heading_deg": 0},
+    "left_shank": {"forward_axis": "+z", "heading_deg": 0},
+    "left_foot": {"forward_axis": "+x", "heading_deg": 0},
+    "right_thigh": {"forward_axis": "+z", "heading_deg": 0},
+    "right_shank": {"forward_axis": "+z", "heading_deg": 0},
+    "right_foot": {"forward_axis": "+x", "heading_deg": 0}
+  }
+}
