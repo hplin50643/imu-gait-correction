@@ -7,3 +7,4 @@
 *.bvh text eol=lf
 *.png binary
 *.zip binary
+/data/Edward_field1_raw/*.csv -text whitespace=cr-at-eol

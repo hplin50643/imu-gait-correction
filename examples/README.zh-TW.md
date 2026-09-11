@@ -2,7 +2,7 @@
 
 [English](README.md) | **繁體中文** · [首頁](../README.zh-TW.md)
 
-這兩份重建結果涵蓋同一段走路紀錄。原始 IMU CSV 保留在本機，不包含在發布內容中。
+這兩份重建結果涵蓋同一段走路紀錄。發布內容也包含 [data/Edward_field1_raw/](../data/Edward_field1_raw/) 中全部 14 份原始 IMU CSV，因此可以自行執行轉換程式，產生校正後的 v3 動畫。
 
 | 檔案 | 版本與用途 |
 | --- | --- |
@@ -22,6 +22,17 @@
 
 截圖是穩定性與內部一致性的定性示例，不能證明與獨立量測的關節角一致。請參閱[驗證結果](../docs/validation.zh-TW.md)與[演算法限制](../docs/algorithms.zh-TW.md)。
 
+## 由原始 IMU 資料執行範例
+
+複製或下載儲存庫，並依[安裝命令](../README.zh-TW.md#安裝與執行)設定環境。在專案根目錄執行：
+
+```sh
+python imu_to_bvh.py
+python validate_bvh.py outputs/Edward_field1_v3.bvh
+```
+
+預設命令讀取 `data/Edward_field1_raw/` 中內附的 14 份檔案，寫入 `outputs/Edward_field1_v3.bvh` 及其稽核報告 `outputs/Edward_field1_v3.report.json`，不會修改輸入 CSV。產生的 BVH 使用目前的 v3 設定，可依前述步驟載入 BVHView。欄位意義請見[資料格式](../docs/data-format.zh-TW.md)，校正判定請見[報告解讀](../docs/validation.zh-TW.md)。產生的輸出與報告留在本機，由 Git 忽略。
+
 ## 在本機驗證與比較
 
 安裝 [Python 環境](../README.zh-TW.md)後，在專案根目錄執行：
@@ -34,4 +45,4 @@ python compare_bvh.py examples/before_v1_x100.bvh examples/after_v3.bvh --before
 
 比較指令會以相同輸出主檔名產生圖表及 JSON。標籤影響顯示文字；JSON 資料始終使用獨立的 `before` 與 `after` 鍵值。根位置的平移不影響姿態指標。工具要求影格數與影格時間相符，但 BVH 不記錄原始絕對起始時間，因此仍須自行確認兩份檔案涵蓋同一段動作。
 
-預設轉換器會由本機 CSV 產生 v3。保留 `mounting.json` 並關閉目前的校正，得到的是保留手臂安裝修正的消融版本，不是完整重現 v1。兩者差異請參閱[參數與消融指令](../docs/parameters.zh-TW.md)。
+預設轉換器會由內附的原始 CSV 產生 v3。保留 `mounting.json` 並關閉目前的校正，得到的是保留手臂安裝修正的消融版本，不是完整重現 v1。兩者差異請參閱[參數與消融指令](../docs/parameters.zh-TW.md)。

@@ -11,6 +11,15 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 EXCLUDED_PARTS = {"data", "outputs", ".local", "dist", ".git", "__pycache__",
                   ".venv", "venv", "env", "bvhview"}
+RAW_EXAMPLE_FILES = frozenset(
+    f"data/Edward_field1_raw/Edward_field1_{sensor}.csv"
+    for sensor in (
+        "pelvis", "upper_back", "chest", "head",
+        "left_upper_arm", "left_forearm", "right_upper_arm", "right_forearm",
+        "left_thigh", "left_shank", "left_foot",
+        "right_thigh", "right_shank", "right_foot",
+    )
+)
 
 
 def release_entries(root: Path):
@@ -21,10 +30,13 @@ def release_entries(root: Path):
         if not name or name.startswith("#"):
             continue
         relative = PurePosixPath(name)
+        approved_raw_example = name in RAW_EXAMPLE_FILES
         if (relative.is_absolute() or "\\" in name or ":" in name
                 or any(part in {".", ".."} for part in name.split("/"))
-                or any(part in EXCLUDED_PARTS for part in relative.parts)
-                or name.endswith((".csv", ".report.json", ".zip", ".exe"))):
+                or (any(part in EXCLUDED_PARTS for part in relative.parts)
+                    and not approved_raw_example)
+                or (relative.suffix.lower() == ".csv" and not approved_raw_example)
+                or name.endswith((".report.json", ".zip", ".exe"))):
             raise ValueError(f"Unsafe or excluded release entry: {name}")
         path = root / relative
         if not path.resolve().is_relative_to(root.resolve()) or not path.is_file():

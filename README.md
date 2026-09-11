@@ -39,27 +39,30 @@ The v1 example has **+100 cm added to root X position** for side-by-side viewing
 
 ## Install and run
 
-Run commands from the repository root. The conda configuration targets **Python 3.10**:
+The repository includes the complete **14-file `Edward_field1_raw` recording** (33,663,479 bytes, approximately 33.7 MB), so the default example runs immediately after installation. Clone the project, then create the **Python 3.10** conda environment:
 
 ```sh
+git clone https://github.com/root50643/imu-gait-correction.git
+cd imu-gait-correction
 conda env create -f environment.yml
 conda activate imu-to-bvh
 ```
 
-Alternatively, use your existing Anaconda `NHRI` environment:
+You can also download and extract the repository ZIP from GitHub, then open a terminal in the extracted repository root. Alternatively, use your existing Anaconda `NHRI` environment from that root:
 
 ```sh
 conda activate NHRI
 python -m pip install -r requirements.txt
 ```
 
-The raw recording is **not distributed**. Place the 14 correctly named CSV files in `data/Edward_field1_raw/`, following [Input data format](docs/data-format.md), then run:
+Run the included raw-data example and validate the generated animation:
 
 ```sh
 python imu_to_bvh.py
+python validate_bvh.py outputs/Edward_field1_v3.bvh
 ```
 
-Defaults produce `outputs/Edward_field1_v3.bvh` and `outputs/Edward_field1_v3.report.json`. Reusing an output path overwrites that BVH and its report; input CSV files are not modified. For another recording or output range:
+The converter reads [data/Edward_field1_raw/](data/Edward_field1_raw/) and produces `outputs/Edward_field1_v3.bvh` and `outputs/Edward_field1_v3.report.json`. Drag the generated BVH into [BVHView](https://theorangeduck.com/media/uploads/BVHView/bvhview.html) using the steps above. The report records the processing settings and correction decisions; see [report interpretation](docs/validation.md). Reusing an output path overwrites that BVH and its report; input CSV files are not modified. For another recording, follow [Input data format](docs/data-format.md). Custom recording or output-range commands:
 
 ```sh
 python imu_to_bvh.py --input-dir data/my_trial --trial my_trial --output outputs/my_trial.bvh
@@ -169,7 +172,7 @@ python validate_bvh.py examples/after_v3.bvh --preview outputs/v3_preview.png
 python compare_bvh.py examples/before_v1_x100.bvh examples/after_v3.bvh --before-label "v1 (before)" --after-label "v3 (after)" --output outputs/v1_v3_comparison.png
 ```
 
-Synthetic tests cover bias, mounting axes, parent/child rotations, Euler continuity, safe time ranges, wrap repair, pelvis fault/recovery behavior, shared turns, and heading quality gaps. The independent reader reconstructs BVH rotations with explicit axis matrices and checks frame/channel counts, bone lengths, and rotation validity. GitHub Actions runs without the private raw recording. See [Validation](docs/validation.md) for scope and published measurements.
+Synthetic tests cover bias, mounting axes, parent/child rotations, Euler continuity, safe time ranges, wrap repair, pelvis fault/recovery behavior, shared turns, and heading quality gaps. The independent reader reconstructs BVH rotations with explicit axis matrices and checks frame/channel counts, bone lengths, and rotation validity. On both Ubuntu and Windows, GitHub Actions also runs the default conversion using the included raw recording and validates the generated BVH. See [Validation](docs/validation.md) for scope and published measurements.
 
 ## Assumptions and limits
 
@@ -190,4 +193,4 @@ Synthetic tests cover bias, mounting axes, parent/child rotations, Euler continu
 | [Example files and playback](examples/README.md) | [範例檔案與播放](examples/README.zh-TW.md) |
 | [Repository and release contents](docs/repository.md) | [專案與發布內容](docs/repository.zh-TW.md) |
 
-The root contains the converter and supporting modules. `tests/` holds synthetic tests; `docs/` holds bilingual explanations and shared images; `examples/` holds two publishable BVH demonstrations. Raw `data/`, generated `outputs/`, local reports/backups, and `tools/bvhview/` are local-only and excluded from the release. The converter does not depend on the BVHView executable.
+The root contains the converter and supporting modules. `tests/` holds synthetic and regression tests; `docs/` holds bilingual explanations and shared images; `examples/` holds two BVH demonstrations. The 14 original CSV files in `data/Edward_field1_raw/` are included as a runnable example and retain their original bytes. Other contents of `data/`, generated `outputs/`, local reports/backups, and `tools/bvhview/` remain local-only and excluded from the release. The converter does not depend on the BVHView executable.

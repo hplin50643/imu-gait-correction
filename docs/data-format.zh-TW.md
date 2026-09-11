@@ -4,7 +4,16 @@
 
 ## 檔案與感測器名稱
 
-本儲存庫不附實際量測 CSV。請將有權使用的量測資料放入本機目錄。轉換程式每個感測器讀取一份 CSV，檔名格式為 `<trial>_<sensor>.csv`。預設試驗名稱為 `Edward_field1`，預設目錄為 `data/Edward_field1_raw/`。
+本儲存庫包含 [data/Edward_field1_raw/](../data/Edward_field1_raw/) 中全部 14 份原始 CSV，作為可執行範例，合計 33,663,479 位元組（約 33.7 MB）。檔案位元組維持原樣，前處理與校正於轉換時進行。其他錄製資料、處理過的資料目錄及來源壓縮檔不隨附發布。
+
+轉換程式每個感測器讀取一份 CSV，檔名格式為 `<trial>_<sensor>.csv`。預設試驗名稱為 `Edward_field1`，預設目錄為 `data/Edward_field1_raw/`。完成[安裝](../README.zh-TW.md#安裝與執行)後，在專案根目錄執行內附的錄製資料：
+
+```sh
+python imu_to_bvh.py
+python validate_bvh.py outputs/Edward_field1_v3.bvh
+```
+
+預設轉換也會寫入 `outputs/Edward_field1_v3.report.json`。產生的檔案留在本機，由 Git 忽略。
 
 | 感測器檔名後綴 | BVH 關節 | 意義 |
 | --- | --- | --- |

@@ -39,27 +39,30 @@ v1 範例的**根節點 X 位置加上 100 cm**，方便並排觀看；所有旋
 
 ## 安裝與執行
 
-請在專案根目錄執行命令。conda 設定使用 **Python 3.10**：
+儲存庫已包含完整的 **14 份 `Edward_field1_raw` 錄製資料**（33,663,479 位元組，約 33.7 MB），安裝後即可直接執行預設範例。請先複製專案，再建立 **Python 3.10** conda 環境：
 
 ```sh
+git clone https://github.com/root50643/imu-gait-correction.git
+cd imu-gait-correction
 conda env create -f environment.yml
 conda activate imu-to-bvh
 ```
 
-也可以使用既有的 Anaconda `NHRI` 環境：
+也可以從 GitHub 下載並解壓縮儲存庫 ZIP，再於解壓縮後的專案根目錄開啟終端機。若已有 Anaconda `NHRI` 環境，可在該根目錄改用：
 
 ```sh
 conda activate NHRI
 python -m pip install -r requirements.txt
 ```
 
-本專案**不包含原始錄製資料**。請依[輸入資料格式](docs/data-format.zh-TW.md)，將 14 份正確命名的 CSV 放入 `data/Edward_field1_raw/`，再執行：
+執行內附的原始資料範例，並驗證產生的動畫：
 
 ```sh
 python imu_to_bvh.py
+python validate_bvh.py outputs/Edward_field1_v3.bvh
 ```
 
-預設產生 `outputs/Edward_field1_v3.bvh` 與 `outputs/Edward_field1_v3.report.json`。再次使用相同輸出路徑會覆寫 BVH 與報告，不會修改輸入 CSV。其他錄製資料或輸出範圍可使用：
+轉換程式讀取 [data/Edward_field1_raw/](data/Edward_field1_raw/)，產生 `outputs/Edward_field1_v3.bvh` 與 `outputs/Edward_field1_v3.report.json`。依前述步驟將產生的 BVH 拖曳至 [BVHView](https://theorangeduck.com/media/uploads/BVHView/bvhview.html) 即可觀看。報告記錄處理設定與校正判定，請見[報告解讀](docs/validation.zh-TW.md)。再次使用相同輸出路徑會覆寫 BVH 與報告，不會修改輸入 CSV。使用其他錄製資料時，請依[輸入資料格式](docs/data-format.zh-TW.md)準備。自訂錄製資料或輸出範圍的命令：
 
 ```sh
 python imu_to_bvh.py --input-dir data/my_trial --trial my_trial --output outputs/my_trial.bvh
@@ -169,7 +172,7 @@ python validate_bvh.py examples/after_v3.bvh --preview outputs/v3_preview.png
 python compare_bvh.py examples/before_v1_x100.bvh examples/after_v3.bvh --before-label "v1 (before)" --after-label "v3 (after)" --output outputs/v1_v3_comparison.png
 ```
 
-合成資料測試涵蓋偏移、安裝軸向、父子旋轉、歐拉角連續性、安全時間範圍、回捲修復、骨盆故障／恢復行為、共同轉彎及航向品質缺口。獨立讀取程式以明確的軸旋轉矩陣重建 BVH 旋轉，檢查幀數／通道數、骨長與旋轉有效性。GitHub Actions 不依賴未公開的原始錄製資料。驗證範圍及發布量測請見[驗證說明](docs/validation.zh-TW.md)。
+合成資料測試涵蓋偏移、安裝軸向、父子旋轉、歐拉角連續性、安全時間範圍、回捲修復、骨盆故障／恢復行為、共同轉彎及航向品質缺口。獨立讀取程式以明確的軸旋轉矩陣重建 BVH 旋轉，檢查幀數／通道數、骨長與旋轉有效性。GitHub Actions 也會在 Ubuntu 與 Windows 使用內附的原始錄製資料執行預設轉換，並驗證產生的 BVH。驗證範圍及發布量測請見[驗證說明](docs/validation.zh-TW.md)。
 
 ## 假設與限制
 
@@ -190,4 +193,4 @@ python compare_bvh.py examples/before_v1_x100.bvh examples/after_v3.bvh --before
 | [Example files and playback](examples/README.md) | [範例檔案與播放](examples/README.zh-TW.md) |
 | [Repository and release contents](docs/repository.md) | [專案與發布內容](docs/repository.zh-TW.md) |
 
-根目錄放置轉換程式與支援模組；`tests/` 放置合成資料測試；`docs/` 放置雙語說明與共用圖片；`examples/` 放置兩份可發布的 BVH 示範。原始 `data/`、產生的 `outputs/`、本機報告／備份及 `tools/bvhview/` 僅保留本機並排除發布。轉換程式不依賴 BVHView 執行檔。
+根目錄放置轉換程式與支援模組；`tests/` 放置合成與回歸測試；`docs/` 放置雙語說明與共用圖片；`examples/` 放置兩份 BVH 示範。`data/Edward_field1_raw/` 中的 14 份原始 CSV 作為可執行範例隨附，檔案位元組維持原樣。`data/` 的其他內容、產生的 `outputs/`、本機報告／備份及 `tools/bvhview/` 仍僅保留本機並排除發布。轉換程式不依賴 BVHView 執行檔。

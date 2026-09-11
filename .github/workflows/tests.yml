@@ -5,7 +5,7 @@ on:
 permissions:
   contents: read
 jobs:
-  synthetic-tests:
+  tests-and-example:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -22,3 +22,5 @@ jobs:
       - run: python -m unittest discover -v
       - run: python validate_bvh.py examples/before_v1_x100.bvh
       - run: python validate_bvh.py examples/after_v3.bvh
+      - run: python imu_to_bvh.py
+      - run: python validate_bvh.py outputs/Edward_field1_v3.bvh

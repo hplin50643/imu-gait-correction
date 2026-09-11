@@ -1,5 +1,23 @@
-# Recorded inputs and generated local results
-/data/
+# Only the approved 14-sensor raw example is published.
+/data/*
+!/data/Edward_field1_raw/
+/data/Edward_field1_raw/*
+!/data/Edward_field1_raw/Edward_field1_pelvis.csv
+!/data/Edward_field1_raw/Edward_field1_upper_back.csv
+!/data/Edward_field1_raw/Edward_field1_chest.csv
+!/data/Edward_field1_raw/Edward_field1_head.csv
+!/data/Edward_field1_raw/Edward_field1_left_upper_arm.csv
+!/data/Edward_field1_raw/Edward_field1_left_forearm.csv
+!/data/Edward_field1_raw/Edward_field1_right_upper_arm.csv
+!/data/Edward_field1_raw/Edward_field1_right_forearm.csv
+!/data/Edward_field1_raw/Edward_field1_left_thigh.csv
+!/data/Edward_field1_raw/Edward_field1_left_shank.csv
+!/data/Edward_field1_raw/Edward_field1_left_foot.csv
+!/data/Edward_field1_raw/Edward_field1_right_thigh.csv
+!/data/Edward_field1_raw/Edward_field1_right_shank.csv
+!/data/Edward_field1_raw/Edward_field1_right_foot.csv
+
+# Generated results and local tools
 /outputs/
 /tools/bvhview/
 /.local/

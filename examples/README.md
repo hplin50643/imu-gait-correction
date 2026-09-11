@@ -2,7 +2,7 @@
 
 **English** | [繁體中文](README.zh-TW.md) · [Home](../README.md)
 
-These two reconstructions cover the same recorded walking interval. Raw IMU CSV files are kept locally and are not included in the release.
+These two reconstructions cover the same recorded walking interval. The release also includes all 14 original IMU CSV files in [data/Edward_field1_raw/](../data/Edward_field1_raw/), so you can run the converter and generate the corrected v3 animation yourself.
 
 | File | Version and purpose |
 | --- | --- |
@@ -22,6 +22,17 @@ Each file contains 5,259 frames, 21 joints and 66 channels at 60 FPS. The first-
 
 The screenshots are qualitative illustrations of stability and internal consistency. They do not establish agreement with independently measured joint angles. See the [validation results](../docs/validation.md) and [algorithm limitations](../docs/algorithms.md).
 
+## Run the example from raw IMU data
+
+Clone or download the repository and follow the [installation commands](../README.md#install-and-run). From the repository root, run:
+
+```sh
+python imu_to_bvh.py
+python validate_bvh.py outputs/Edward_field1_v3.bvh
+```
+
+The default command reads the 14 bundled files in `data/Edward_field1_raw/` and writes `outputs/Edward_field1_v3.bvh` with its audit report `outputs/Edward_field1_v3.report.json`. It does not modify the input CSV files. The generated BVH uses the current v3 settings; load it into BVHView with the steps above. See [data format](../docs/data-format.md) for the columns and [report interpretation](../docs/validation.md) for the correction decisions. Generated outputs and reports stay local and are ignored by Git.
+
 ## Validate and compare locally
 
 Run these commands from the repository root after installing the [Python environment](../README.md):
@@ -34,4 +45,4 @@ python compare_bvh.py examples/before_v1_x100.bvh examples/after_v3.bvh --before
 
 The comparison command writes a plot and a JSON file under the same output stem. Labels affect presentation; JSON datasets always use the separate keys `before` and `after`. Root translation does not affect the orientation metrics. The tool requires matching frame counts and frame times, but BVH does not identify the original absolute start time: you must also ensure that the files cover the same motion interval.
 
-The default converter creates v3 from local CSV data. Disabling the current corrections while keeping `mounting.json` is an ablation with the corrected arm mounting, not an exact reproduction of v1. See [parameters and ablation commands](../docs/parameters.md) for the distinction.
+The default converter creates v3 from the included raw CSV data. Disabling the current corrections while keeping `mounting.json` is an ablation with the corrected arm mounting, not an exact reproduction of v1. See [parameters and ablation commands](../docs/parameters.md) for the distinction.

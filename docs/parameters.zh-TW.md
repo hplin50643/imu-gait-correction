@@ -2,7 +2,7 @@
 
 [English](parameters.md) | [繁體中文](parameters.zh-TW.md) · [首頁](../README.zh-TW.md)
 
-請在專案根目錄、已安裝 [requirements.txt](../requirements.txt) 相依套件的環境執行指令。發布內容不包含本機輸入 CSV。必要檔案見[資料格式](data-format.zh-TW.md)，各校正的意義見[演算法](algorithms.zh-TW.md)。
+請在專案根目錄、已安裝 [requirements.txt](../requirements.txt) 相依套件的環境執行指令。發布內容包含 `data/Edward_field1_raw/` 中全部 14 份原始輸入 CSV，因此 `python imu_to_bvh.py` 無須額外指定輸入參數即可執行隨附範例。其他錄製資料及來源壓縮檔仍排除發布。請參閱[安裝與完整範例](../README.zh-TW.md#安裝與執行)；必要檔案見[資料格式](data-format.zh-TW.md)，各校正的意義見[演算法](algorithms.zh-TW.md)。
 
 ## 命令列選項
 

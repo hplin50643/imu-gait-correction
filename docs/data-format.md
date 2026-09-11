@@ -4,7 +4,16 @@
 
 ## Files and sensor names
 
-Recorded CSV files are not distributed with this repository. Supply your own authorized measurements in a local directory. The converter reads one CSV per sensor, using `<trial>_<sensor>.csv` as the filename. The default trial is `Edward_field1` and the default directory is `data/Edward_field1_raw/`.
+This repository includes all 14 original CSV files in [data/Edward_field1_raw/](../data/Edward_field1_raw/) as a runnable example, totaling 33,663,479 bytes (approximately 33.7 MB). The files retain their original bytes; preprocessing and corrections take place during conversion. Other recordings, processed-data directories and source archives are not distributed.
+
+The converter reads one CSV per sensor, using `<trial>_<sensor>.csv` as the filename. The default trial is `Edward_field1` and the default directory is `data/Edward_field1_raw/`. After [installation](../README.md#install-and-run), run the included recording from the repository root:
+
+```sh
+python imu_to_bvh.py
+python validate_bvh.py outputs/Edward_field1_v3.bvh
+```
+
+The default conversion also writes `outputs/Edward_field1_v3.report.json`. Generated files remain local and are ignored by Git.
 
 | Sensor suffix | BVH joint | Meaning |
 | --- | --- | --- |

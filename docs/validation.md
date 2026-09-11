@@ -57,15 +57,19 @@ The 0.2 s candidate reduced this discrepancy further but noticeably compressed f
 python -m unittest discover -v
 python validate_bvh.py examples/before_v1_x100.bvh
 python validate_bvh.py examples/after_v3.bvh
+python imu_to_bvh.py
+python validate_bvh.py outputs/Edward_field1_v3.bvh
 ```
 
-All **39 tests** passed locally after the directory reorganization: 36 existing tests and 3 comparison regression tests. They cover gravity/mounting transforms, known yaw and bias, noncommuting BVH parent-child round trips, Euler continuity, gaps and frozen tails, paired rate-wrap repair, corroborated pelvis faults and recovery, shared-turn preservation, heading reliability and recovery, and comparison labels/sampling/display-translation invariance. These are synthetic and structural checks, not clinical validation.
+All **42 tests** passed locally: 36 original tests, 3 comparison regression tests and 3 release-scope tests. They cover gravity/mounting transforms, known yaw and bias, noncommuting BVH parent-child round trips, Euler continuity, gaps and frozen tails, paired rate-wrap repair, corroborated pelvis faults and recovery, shared-turn preservation, heading reliability and recovery, and comparison labels/sampling/display-translation invariance. Release tests verify that the 14 approved CSV filenames preserve their original bytes and that unapproved CSV files, other data and local artifacts remain excluded. These are synthetic, structural and packaging checks, not clinical validation.
 
 The independent validator composes explicit axis matrices without using SciPy's rotation conversion. Both examples contain 5,259 finite frames, 66 channels and 21 joints. Their nominal rate is 60 FPS; first-to-last duration is 87.633333 s. Root translation range is zero on every axis. Maximum bone-length variation is below $3\times10^{-14}$ cm and rotation orthogonality residual is below $2\times10^{-15}$, consistent with floating-point round-off.
 
-Running the full default converter against the retained local raw data produced a BVH **byte-for-byte identical** to the existing v3 file after the reorganization. Its SHA-256 is `9d18f032fe36eced0d87cefcd67037027857158377931d3025de560efd86da5f`. This is a check of this environment and recording, not a guarantee of identical floating-point serialization on every dependency version or operating system.
+The [14 original CSV files](../data/Edward_field1_raw/) are now included in the repository and release ZIP. Run the commands above from an extracted project or clone; the default converter reads that bundled recording and writes a new BVH and report under `outputs/`. No separate data download or path editing is needed.
 
-GitHub Actions is configured to install dependencies and run the tests and both example validators on Python 3.10 under Ubuntu and Windows. A successful local run does not imply that hosted CI has already run; that requires publishing the repository.
+Running the full default converter against this recording produced a BVH **byte-for-byte identical** to the existing v3 file in the tested NHRI Python 3.10 environment. Its SHA-256 is `9d18f032fe36eced0d87cefcd67037027857158377931d3025de560efd86da5f`. This is a check of this environment and recording, not a guarantee of identical floating-point serialization on every dependency version or operating system.
+
+GitHub Actions installs dependencies and runs the tests, both existing example validators, the full default raw-data conversion and validation of the generated BVH on Python 3.10 under Ubuntu and Windows. The [Actions page](https://github.com/root50643/imu-gait-correction/actions) records results for each published commit; local success alone does not establish a hosted run's result. CSV files keep their original line endings and bytes; generated reports and outputs remain local.
 
 ## Screenshots and viewer checks
 

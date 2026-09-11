@@ -2,7 +2,7 @@
 
 [English](parameters.md) | [繁體中文](parameters.zh-TW.md) · [Home](../README.md)
 
-Run commands from the project root in an environment containing [requirements.txt](../requirements.txt). Private input CSV files are not included in the release. See [data format](data-format.md) for the required files and [algorithms](algorithms.md) for the meaning of each correction.
+Run commands from the project root in an environment containing [requirements.txt](../requirements.txt). The release includes all 14 original input CSV files in `data/Edward_field1_raw/`, so `python imu_to_bvh.py` runs the supplied example with no extra input arguments. Other recordings and source archives remain excluded. See [installation and the complete example](../README.md#install-and-run), [data format](data-format.md) for the required files, and [algorithms](algorithms.md) for the meaning of each correction.
 
 ## Command-line options
 
