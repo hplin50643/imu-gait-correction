@@ -42,7 +42,7 @@ v1 範例的**根節點 X 位置加上 100 cm**，方便並排觀看；所有旋
 儲存庫已包含完整的 **14 份 `Edward_field1_raw` 錄製資料**（33,663,479 位元組，約 33.7 MB），安裝後即可直接執行預設範例。請先複製專案，再建立 **Python 3.10** conda 環境：
 
 ```sh
-git clone https://github.com/root50643/imu-gait-correction.git
+git clone https://github.com/hplin50643/imu-gait-correction.git
 cd imu-gait-correction
 conda env create -f environment.yml
 conda activate imu-to-bvh
