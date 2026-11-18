@@ -42,7 +42,7 @@ The v1 example has **+100 cm added to root X position** for side-by-side viewing
 The repository includes the complete **14-file `Edward_field1_raw` recording** (33,663,479 bytes, approximately 33.7 MB), so the default example runs immediately after installation. Clone the project, then create the **Python 3.10** conda environment:
 
 ```sh
-git clone https://github.com/root50643/imu-gait-correction.git
+git clone https://github.com/hplin50643/imu-gait-correction.git
 cd imu-gait-correction
 conda env create -f environment.yml
 conda activate imu-to-bvh
